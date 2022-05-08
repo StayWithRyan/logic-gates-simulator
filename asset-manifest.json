@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/logic-gates-simulator/static/css/main.073c9b0a.css",
-    "main.js": "/logic-gates-simulator/static/js/main.c6a11ffc.js",
-    "static/js/787.8fbea2d6.chunk.js": "/logic-gates-simulator/static/js/787.8fbea2d6.chunk.js",
-    "static/media/logo.svg": "/logic-gates-simulator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/logic-gates-simulator/static/css/main.8a685450.css",
+    "main.js": "/logic-gates-simulator/static/js/main.efefa2ca.js",
     "index.html": "/logic-gates-simulator/index.html",
-    "main.073c9b0a.css.map": "/logic-gates-simulator/static/css/main.073c9b0a.css.map",
-    "main.c6a11ffc.js.map": "/logic-gates-simulator/static/js/main.c6a11ffc.js.map",
-    "787.8fbea2d6.chunk.js.map": "/logic-gates-simulator/static/js/787.8fbea2d6.chunk.js.map"
+    "main.8a685450.css.map": "/logic-gates-simulator/static/css/main.8a685450.css.map",
+    "main.efefa2ca.js.map": "/logic-gates-simulator/static/js/main.efefa2ca.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.c6a11ffc.js"
+    "static/css/main.8a685450.css",
+    "static/js/main.efefa2ca.js"
   ]
 }
