@@ -1,0 +1,22 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textBox{
+    border: none;
+    width: 40vw;
+    outline-style: none;
+    text-align: center;
+    font-family: 'Roboto Mono';
+    font-weight: 600;
+    font-size: 70px;
+    user-select: none;
+}
