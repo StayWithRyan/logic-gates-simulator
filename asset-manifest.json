@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/logic-gates-simulator/static/css/main.ae9ba962.css",
-    "main.js": "/logic-gates-simulator/static/js/main.c4a3c608.js",
+    "main.css": "/logic-gates-simulator/static/css/main.f9befce1.css",
+    "main.js": "/logic-gates-simulator/static/js/main.82a57587.js",
     "index.html": "/logic-gates-simulator/index.html",
-    "main.ae9ba962.css.map": "/logic-gates-simulator/static/css/main.ae9ba962.css.map",
-    "main.c4a3c608.js.map": "/logic-gates-simulator/static/js/main.c4a3c608.js.map"
+    "main.f9befce1.css.map": "/logic-gates-simulator/static/css/main.f9befce1.css.map",
+    "main.82a57587.js.map": "/logic-gates-simulator/static/js/main.82a57587.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae9ba962.css",
-    "static/js/main.c4a3c608.js"
+    "static/css/main.f9befce1.css",
+    "static/js/main.82a57587.js"
   ]
 }
