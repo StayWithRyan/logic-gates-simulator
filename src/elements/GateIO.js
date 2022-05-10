@@ -30,6 +30,7 @@ class GateOutputElement extends GateIOElement{
     constructor() {
         super();
         this.nextElements = [];
+        this.selectedNext = null;
     }
 
     deleteNextElement(element) {
@@ -44,6 +45,15 @@ class GateOutputElement extends GateIOElement{
     drawPathToNextElements(canvas) {
         let context = canvas.getContext('2d');
         this.nextElements.forEach(nextElement => {
+            if(this.selectedNext && this.selectedNext == nextElement) {
+                context.beginPath();
+                context.lineWidth = 9;
+                context.strokeStyle = Constants.orElementsSelectedColor;
+                context.moveTo(this.x, this.y);
+                context.lineTo(nextElement.x, nextElement.y);
+                context.stroke();
+            }
+
             context.beginPath();
             context.lineWidth = 5;
             context.strokeStyle = this.signaled ? Constants.signalColor : Constants.noSignalColor;

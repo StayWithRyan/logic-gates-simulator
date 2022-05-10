@@ -76,13 +76,26 @@ const drawHood = (canvas) => {
     context.fillStyle = Constants.elementsColor;
     context.fillRect(Constants.plusInputX + 10, Constants.plusInputY, Constants.buttonSize - 20, Constants.buttonSize);
     context.fillRect(Constants.plusInputX, Constants.plusInputY + 10, Constants.buttonSize, Constants.buttonSize - 20);
+    context.fillStyle = Constants.elementsSelectedColor;
+    context.fillRect(Constants.plusInputX + 12, Constants.plusInputY + 2, Constants.buttonSize - 24, Constants.buttonSize - 4);
+    context.fillRect(Constants.plusInputX + 2, Constants.plusInputY + 12, Constants.buttonSize - 4, Constants.buttonSize - 24);
     //minus input
+    context.fillStyle = Constants.elementsColor;
     context.fillRect(Constants.minusInputX, Constants.minusInputY + 10, Constants.buttonSize, Constants.buttonSize - 20);
+    context.fillStyle = Constants.elementsSelectedColor;
+    context.fillRect(Constants.minusInputX + 2, Constants.minusInputY + 12, Constants.buttonSize - 4, Constants.buttonSize - 24);
     //plus output
+    context.fillStyle = Constants.elementsColor;
     context.fillRect(Constants.plusOutputX + 10, Constants.plusOutputY, Constants.buttonSize - 20, Constants.buttonSize);
     context.fillRect(Constants.plusOutputX, Constants.plusOutputY + 10, Constants.buttonSize, Constants.buttonSize - 20);
+    context.fillStyle = Constants.elementsSelectedColor;
+    context.fillRect(Constants.plusOutputX + 12, Constants.plusOutputY + 2, Constants.buttonSize - 24, Constants.buttonSize - 4);
+    context.fillRect(Constants.plusOutputX + 2, Constants.plusOutputY + 12, Constants.buttonSize - 4, Constants.buttonSize - 24);
     //minus output
+    context.fillStyle = Constants.elementsColor;
     context.fillRect(Constants.minusOutputX, Constants.minusOutputY + 10, Constants.buttonSize, Constants.buttonSize - 20);
+    context.fillStyle = Constants.elementsSelectedColor;
+    context.fillRect(Constants.minusOutputX + 2, Constants.minusOutputY + 12, Constants.buttonSize - 4, Constants.buttonSize - 24);
 }
 
 export {draw}

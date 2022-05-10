@@ -13,6 +13,7 @@ import {createCustomElement} from "./elements/CustomElement";
 import {GateInputElement, GateOutputElement} from "./elements/GateIO";
 import Constants from "./constants";
 import ModalCreatingElement from "./ModalCreatingElement"
+import {squared} from "distance-to-line-segment"
 
 const updateGates = () => {
     elements.forEach(element => {
@@ -147,6 +148,7 @@ const getBarElementByPosition = (x, y) => {
 }
 
 let selectedElement = null;
+let selectedLineFrom = null;
 // x and y of mouse when clicked
 let xDown, yDown;
 // x and y of selected element when mouse clicked
@@ -191,7 +193,11 @@ function App() {
                         elements.splice(i, 1);
                     }
                 }
-
+            }
+            if(selectedLineFrom) {
+                selectedLineFrom.selectedNext.prevElement = null;
+                selectedLineFrom.selectedNext.signaled = false;
+                selectedLineFrom.deleteNextElement(selectedLineFrom.selectedNext);
             }
         }
         if(event.code == 'Escape') {
@@ -219,15 +225,8 @@ function App() {
     }
         
     const updateSelectedElement = () => {
-        let isFieldClick = true;
-
-        //elements
         elements.forEach(element => {
             if(isInsideRectangle(xDown, yDown, element.x, element.y, element.width, element.height)) {
-                isFieldClick = false;
-                elements.forEach(e => {
-                    e.selected = false;
-                });
                 element.selected = true;
                 selectedElement = element;
                 selectedXWhenDown = element.x;
@@ -235,11 +234,42 @@ function App() {
                 setIsMovingElement(true);
             }
         });
+    }
 
-        // unselect if clicked on field
-        if(isFieldClick) {
-            unselectElements();
-        }
+    const updateSelectedLine = () => {
+        inputs.forEach(input => {
+            input.nextElements.forEach(nextElement => {
+                let distance = squared(input.x, input.y, nextElement.x, nextElement.y, xDown, yDown);
+                if(distance < 10) {
+                    selectedLineFrom = input;
+                    input.selectedNext = nextElement;
+                }
+            });
+        });
+        
+        elements.forEach(element => {
+            element.outputs.forEach(output => {
+                output.nextElements.forEach(nextElement => {
+                    let distance = squared(output.x, output.y, nextElement.x, nextElement.y, xDown, yDown);
+                    if(distance < 10) {
+                        selectedLineFrom = output;
+                        output.selectedNext = nextElement;
+                    }
+                });
+            });
+        });
+    }
+
+    const unselectLines = () => {
+        inputs.forEach(input => {
+            input.selectedNext = null;
+        });
+        elements.forEach(element => {
+            element.outputs.forEach(output => {
+                output.selectedNext = null;
+            });
+        });
+        selectedLineFrom = null;
     }
 
     const unselectElements = () => {
@@ -252,6 +282,7 @@ function App() {
     const handleDown = (e) => {
         [xDown, yDown] = getMousePosition(canvasRef.current, e);
         unselectElements();
+        unselectLines();
         updateInputsIfRelated();
         clickButtonsIfRelated();
 
@@ -276,6 +307,7 @@ function App() {
 
 
         updateSelectedElement();
+        updateSelectedLine();
     }
 
     const handleUp = (e) => {

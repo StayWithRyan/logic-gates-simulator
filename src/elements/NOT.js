@@ -1,6 +1,6 @@
 import {GateInputElement, GateOutputElement} from "./GateIO";
 import BasicLogicGate from './BasicLogicGate';
-import {elements} from '../App';
+import Constants from '../constants';
 
 class NOTElement extends BasicLogicGate {
     constructor(x, y) {
@@ -9,6 +9,8 @@ class NOTElement extends BasicLogicGate {
         this.outputs.push(new GateOutputElement());
         this.setHeight(1);
         this.updatePosition(x, y);
+        this.color = Constants.notElementsColor;
+        this.selectedColor = Constants.notElementsSelectedColor;
     }
     
     createElement() {

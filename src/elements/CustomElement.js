@@ -1,6 +1,7 @@
 import {GateInputElement, GateOutputElement} from "./GateIO";
 import BasicLogicGate from './BasicLogicGate';
 import {inputs, outputs, updateGates} from '../App';
+import Constants from '../constants';
 
 class CustomElement extends BasicLogicGate {
     constructor(inputsCount, outputsCount, combinations, results, name) {
@@ -16,6 +17,8 @@ class CustomElement extends BasicLogicGate {
             this.outputs.push(new GateOutputElement());
         }
         this.setHeight(Math.max(inputsCount, outputsCount));
+        this.color = Constants.elementsColor;
+        this.selectedColor = Constants.elementsSelectedColor;
     }
 
     createElement(x, y) {

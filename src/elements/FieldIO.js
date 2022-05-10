@@ -39,6 +39,7 @@ class FieldInputElement extends FieldIOElement{
         this.x = Constants.fieldBeginX + 70;
         this.fieldX = Constants.fieldBeginX;
         this.nextElements = [];
+        this.selectedNext = null;
     }
     
     deleteNextElement(element) {
@@ -54,6 +55,15 @@ class FieldInputElement extends FieldIOElement{
         // path to next element
         let context = canvas.getContext('2d');
         this.nextElements.forEach(nextElement => {
+            if(this.selectedNext && this.selectedNext == nextElement) {
+                context.beginPath();
+                context.lineWidth = 9;
+                context.strokeStyle = Constants.orElementsSelectedColor;
+                context.moveTo(this.x, this.y);
+                context.lineTo(nextElement.x, nextElement.y);
+                context.stroke();
+            }
+
             context.beginPath();
             context.lineWidth = 5;
             context.strokeStyle = this.signaled ? Constants.signalColor : Constants.noSignalColor;

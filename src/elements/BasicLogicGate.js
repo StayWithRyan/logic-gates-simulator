@@ -24,10 +24,10 @@ class BasicLogicGate {
 
     draw(canvas) {
         const context = canvas.getContext('2d');
-        context.fillStyle = Constants.elementsColor;
+        context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.width, this.height);
         if(this.selected) {
-            context.strokeStyle = "#7b4fbd";
+            context.strokeStyle = this.selectedColor;
             context.lineWidth = 5;
             context.strokeRect(this.x, this.y, this.width, this.height);
         }

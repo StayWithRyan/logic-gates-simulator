@@ -1,6 +1,6 @@
 import {GateInputElement, GateOutputElement} from "./GateIO";
 import BasicLogicGate from './BasicLogicGate';
-import {elements} from '../App';
+import Constants from '../constants';
 
 class XORElement extends BasicLogicGate {
     constructor(x, y) {
@@ -10,6 +10,8 @@ class XORElement extends BasicLogicGate {
         this.outputs.push(new GateOutputElement());
         this.setHeight(2);
         this.updatePosition(x, y);
+        this.color = Constants.xorElementsColor;
+        this.selectedColor = Constants.xorElementsSelectedColor;
     }
     
     createElement() {
