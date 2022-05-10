@@ -225,24 +225,31 @@ function App() {
     }
         
     const updateSelectedElement = () => {
-        elements.forEach(element => {
+        for(let i = elements.length - 1; i >= 0; --i) {
+            let element = elements[i];
             if(isInsideRectangle(xDown, yDown, element.x, element.y, element.width, element.height)) {
                 element.selected = true;
                 selectedElement = element;
                 selectedXWhenDown = element.x;
                 selectedYWhenDown = element.y;
                 setIsMovingElement(true);
+                return;
             }
-        });
+        }
     }
 
     const updateSelectedLine = () => {
+        let selected = false;
         inputs.forEach(input => {
             input.nextElements.forEach(nextElement => {
+                if(selected) {
+                    return;
+                }
                 let distance = squared(input.x, input.y, nextElement.x, nextElement.y, xDown, yDown);
                 if(distance < 10) {
                     selectedLineFrom = input;
                     input.selectedNext = nextElement;
+                    selected = true;
                 }
             });
         });
@@ -250,10 +257,14 @@ function App() {
         elements.forEach(element => {
             element.outputs.forEach(output => {
                 output.nextElements.forEach(nextElement => {
+                    if(selected) {
+                        return;
+                    }
                     let distance = squared(output.x, output.y, nextElement.x, nextElement.y, xDown, yDown);
                     if(distance < 10) {
                         selectedLineFrom = output;
                         output.selectedNext = nextElement;
+                        selected = true;
                     }
                 });
             });
