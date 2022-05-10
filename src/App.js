@@ -233,9 +233,10 @@ function App() {
                 selectedXWhenDown = element.x;
                 selectedYWhenDown = element.y;
                 setIsMovingElement(true);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     const updateSelectedLine = () => {
@@ -317,8 +318,10 @@ function App() {
         }
 
 
-        updateSelectedElement();
-        updateSelectedLine();
+        let updated = updateSelectedElement();
+        if(!updated) {
+            updateSelectedLine();
+        }
     }
 
     const handleUp = (e) => {
