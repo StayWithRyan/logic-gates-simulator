@@ -43,7 +43,7 @@ let elementsOnBar = [];
 const addElementToBar = (name, functionToCreateElement) => {
     let width = name.length * 24 + 30;
     if(width + lastElementX > Constants.fieldEndX) {
-        return;
+        return false;
     }
     elementsOnBar.push(
         {
@@ -56,10 +56,11 @@ const addElementToBar = (name, functionToCreateElement) => {
         }
     );
     lastElementX += width + 20;
+    return true;
 }
 const addCustomElementToBar = (name) => {
     let customElement = createCustomElement(name);
-    addElementToBar(name, (x, y) => { return customElement.createElement(x, y);});
+    return addElementToBar(name, (x, y) => { return customElement.createElement(x, y);});
 }
 
 addElementToBar("CREATE", addCustomElementToBar);
@@ -201,12 +202,18 @@ function App() {
             }
         }
         if(event.code == 'Escape') {
-            setisModalOpened(false);
+            if(isModalOpened) {
+                setisModalOpened(false);
+            }
         }
         if(event.code == 'Enter') {
-            setisModalOpened(false);
-            elementToSpawn.createElement(creatingElementName);
-            clearField();
+            console.log(isModalOpened)
+            if(isModalOpened) {
+                setisModalOpened(false);
+                if(elementToSpawn.createElement(creatingElementName)) {
+                    clearField();
+                }
+            }
         }
     }
 
@@ -215,7 +222,7 @@ function App() {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [isModalOpened]);
 
     
     const getMousePosition = (canvas, event) => {
